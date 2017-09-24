@@ -35,6 +35,13 @@ public class LerVariosFicheros
             }
             while ( ! "".equals(nombreFichero) ); 
         }
+        else
+        {
+            for (int i = 0; i < args.length; i++)
+            {
+                lista.add(args[i]);
+            }
+        }
            
         //DEBUGEANDO: 
         //System.out.println(lista.get(0));
