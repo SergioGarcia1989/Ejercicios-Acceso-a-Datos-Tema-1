@@ -32,6 +32,7 @@ public class EjercicioPropuesto134
             {
                 System.out.println("No es un GIF");
             }
+            ficheroEntrada.close();
         } 
         catch (FileNotFoundException ex) 
         {
