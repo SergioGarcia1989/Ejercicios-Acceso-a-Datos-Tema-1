@@ -77,11 +77,15 @@ public class Hacha3
             
             for (int i = 0; i < cantidadDeFicheros ; i++)
             {
-                ficheroSalida = new FileOutputStream(
+                for (int j = 0; j < tamanioParticion; j++)
+                {
+                    ficheroSalida = new FileOutputStream(
                             new File(nombreSin + i + extension));
-                System.out.println("Generando parte " + (i+1) + "de" + 
+                   
+                    ficheroSalida.write(b[j]);
+                }
+                 System.out.println("Generando parte " + (i+1) + " de " + 
                         cantidadDeFicheros);
-                ficheroSalida.write(b[i]);
             }
             ficheroEntradaBin.close();
             ficheroSalida.close();
