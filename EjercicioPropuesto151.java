@@ -91,7 +91,7 @@ public class EjercicioPropuesto151
     public static void main(String[] args)
     {
        Persona p = new Persona("Paco", "paco@gmail.com",25);
-       Persona p2 = new Persona("Oriol", "viscaERC@gmail.com",43);
+       Persona p2 = new Persona("Oriol", "oriol@gmail.com",43);
        Persona p3 = new Persona("Sergi", "sergi@gmail.com",27);
        //Creamos un arrayList
        List<Persona> listaPersonas = new ArrayList<>();
