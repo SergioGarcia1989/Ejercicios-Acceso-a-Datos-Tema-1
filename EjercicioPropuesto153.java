@@ -1,3 +1,4 @@
+
 /*
  * Crea una Agenda de Personas Serializando y Deserializando, para poder
 introducir personas nuevas, mostrarlas y buscarlas.
@@ -16,7 +17,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import java.io.Serializable;
@@ -67,17 +69,12 @@ public class Persona implements Serializable
     @Override
     public String toString()
     {
-        return "Persona{" + "nombre=" + nombre + ", correoElectronico=" 
-                + correoElectronico + ", edad=" + edad + '}';
+        return  nombre + "," 
+                + correoElectronico + "," + edad ;
     }
     
     
 }
-
-
-
-
-
 
 
 public class EjercicioPropuesto153
@@ -95,20 +92,25 @@ public class EjercicioPropuesto153
     public static void anadirPersona() 
     {
         Scanner teclado = new Scanner(System.in);
-      
+        String nombre="";
+        String email="";
+        int edad= 0;
+        
         System.out.println("Nombre ?");
-        String nombre = teclado.nextLine();
+        nombre = teclado.nextLine();
         System.out.println("Email ? ");
-        String email = teclado.nextLine();
+        email = teclado.nextLine();
         System.out.println("Edad ?");
-        int edad = teclado.nextInt();
+        edad = teclado.nextInt();
+      
         
         Persona p = new Persona (nombre, email, edad);
         listaPersonas.add(p);
         try
         {
+            //SERIALIZAMOS EL ARRAY
             File fichero = new File("personas.dat");
-            FileOutputStream ficheroSalida = new FileOutputStream(fichero);
+            FileOutputStream ficheroSalida = new FileOutputStream(fichero, false);
             ObjectOutputStream ficheroObjetos = new ObjectOutputStream(ficheroSalida); 
             
             ficheroObjetos.writeObject(listaPersonas);
@@ -124,8 +126,8 @@ public class EjercicioPropuesto153
         {
            System.err.println("Excepcion Entrada salida ");
         }
-       
-       
+
+        
     }
     
     public static void mostrarDatosTemporalesMemoria()
@@ -143,8 +145,10 @@ public class EjercicioPropuesto153
         File fichero = new File("personas.dat");
         FileInputStream ficheroSalida = new FileInputStream(fichero);
         ObjectInputStream ficheroObjetos = new ObjectInputStream(ficheroSalida);
-        
+        //DESERIALIZAMOS EL ARRAY
         List arrays = (ArrayList) ficheroObjetos.readObject();
+        //AQUI GUARDO OTRA VEZ TODO EN MEMORIA!!!!! Y NO MACHACO!!!!!!!
+        listaPersonas = arrays;
         
         for (int i = 0 ; i < arrays.size() ; i++)
         {
@@ -213,6 +217,7 @@ public class EjercicioPropuesto153
     public static void main(String[] args) throws FileNotFoundException
     {
       Scanner teclado = new Scanner(System.in);
+      
        boolean salir = false;
        String opcion="";
        do
